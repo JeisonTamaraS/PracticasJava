@@ -5,6 +5,7 @@
  */
 package forms;
 
+import Dao.ClientesDao;
 import model.Cliente;
 import java.util.ArrayList;
 import java.util.List;
@@ -154,6 +155,9 @@ public class Formulario extends javax.swing.JFrame {
         
         JOptionPane.showMessageDialog(rootPane, "El cliente se ha guardado correctamente");
         limpiarCajasTexto();
+        
+        ClientesDao dao = new ClientesDao();
+        dao.agregar(cliente);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed

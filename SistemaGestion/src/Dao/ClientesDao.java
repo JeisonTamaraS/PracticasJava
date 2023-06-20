@@ -8,15 +8,17 @@ package Dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Cliente;
 
 /**
  *
  * @author jeison tamara
  */
 public class ClientesDao {
-    public void conectar(){
+    public void agregar(Cliente cliente){
         String baseDeDatos = "clientes";
         String usuario = "root";
         String password = "95050201";
@@ -30,6 +32,10 @@ public class ClientesDao {
         try {
             Class.forName(driver);
             conexion = DriverManager.getConnection(conexionUrl, usuario, password);
+            
+            String sql="insert into `clientes`(`id`,`nombre`,`apellido`,`telefono`,`email`) values(null,'"+cliente.getNombre()+"','"+cliente.getApellido()+"','"+cliente.getTelefono()+"','"+cliente.getEmail()+"');";
+            Statement statement = conexion.createStatement();
+            statement.executeQuery(sql);
         } catch (Exception ex) {
             Logger.getLogger(ClientesDao.class.getName()).log(Level.SEVERE, null, ex);
         }
